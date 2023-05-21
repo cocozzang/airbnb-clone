@@ -1,13 +1,23 @@
 'use client'
 
-import useRegisterModal from '@/hooks/useRegisterModal'
 import { useState, useCallback } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
+import { User } from '@prisma/client'
+import { signOut } from 'next-auth/react'
+
+import useLoginModal from '@/hooks/useLoginModal'
+import useRegisterModal from '@/hooks/useRegisterModal'
+
 import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
 
-export default function UserMenu() {
+interface UserMenuProps {
+  currentUser?: User | null
+}
+
+export default function UserMenu({ currentUser }: UserMenuProps) {
   const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
@@ -37,10 +47,22 @@ export default function UserMenu() {
         {isOpen && (
           <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4">
             <div className="flex cursor-pointer flex-col">
-              <>
-                <MenuItem label="Login" onClick={() => {}} />
-                <MenuItem label="Sign up" onClick={registerModal.onOpen} />
-              </>
+              {currentUser ? (
+                <>
+                  <MenuItem label="My trips" onClick={() => {}} />
+                  <MenuItem label="My favorites" onClick={() => {}} />
+                  <MenuItem label="My reservations" onClick={() => {}} />
+                  <MenuItem label="My properties" onClick={() => {}} />
+                  <MenuItem label="Airbnb my home" onClick={() => {}} />
+                  <hr />
+                  <MenuItem label="Logout" onClick={signOut} />
+                </>
+              ) : (
+                <>
+                  <MenuItem label="Login" onClick={loginModal.onOpen} />
+                  <MenuItem label="Sign up" onClick={registerModal.onOpen} />
+                </>
+              )}
             </div>
           </div>
         )}
