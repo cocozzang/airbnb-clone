@@ -74,22 +74,21 @@ export default function Modal({
           <div
             className={`
               h-full
-              transition 
               duration-300 
               ${showModal ? 'translate-y-0' : 'translate-y-full'}
               ${showModal ? 'opacity-100' : 'opacity-0'}  
             `}
           >
-            <div className="relative flex h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none transition focus:outline-none md:h-auto lg:h-auto">
+            <div className="relative flex h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none md:h-auto lg:h-auto">
               {/* HEADER */}
               <div className="relative flex items-center justify-center rounded-t border-b-[1px] p-6">
+                <div className="text-lg font-semibold">{title}</div>
                 <button
                   onClick={handleClose}
-                  className="absolute left-9 border-0 p-1 transition hover:opacity-70"
+                  className="absolute right-9 border-0 p-1 transition hover:opacity-70"
                 >
-                  <IoMdClose size={18} />
+                  <IoMdClose size={24} />
                 </button>
-                <div className="text-lg font-semibold">{title}</div>
               </div>
               {/* BODY */}
               <div className="relative flex-auto p-6">{body}</div>
@@ -111,6 +110,7 @@ export default function Modal({
                     onClick={handleSubmit}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
