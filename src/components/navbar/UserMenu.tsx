@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useState, useCallback } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import Avatar from '../Avatar'
@@ -15,7 +15,7 @@ export default function UserMenu() {
 
   return (
     <div className="relative">
-      <div className="itens-center flex flex-row gap-3">
+      <div className="flex flex-row items-center gap-3">
         <div
           onClick={() => {}}
           className="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 md:block"
