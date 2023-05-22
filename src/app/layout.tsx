@@ -13,6 +13,13 @@ const font = Nunito({
 export const metadata = {
   title: 'Airbnb',
   description: 'Airbnb clone',
+  icons: {
+    icon: {
+      url: '/favicon.ico',
+      type: 'image/x-icon',
+    },
+    shortcut: { url: '/favicon.ico', type: 'image/x-icon' },
+  },
 }
 
 export default async function RootLayout({
@@ -25,10 +32,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        {/* client component */}
         <ToasterProvider />
         <LoginModal />
         <RegisterModal />
         <Navbar currentUser={currenUser} />
+        {/* client component */}
+
         {children}
       </body>
     </html>
