@@ -6,11 +6,12 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 
 export default function Logo() {
-  const router = useRouter
+  const router = useRouter()
   return (
     <Image
+      onClick={() => router.push('/')}
       alt="Logo"
-      className="hidden h-auto w-auto cursor-pointer md:block"
+      className="hidden cursor-pointer md:block"
       height="100"
       width="100"
       src="/images/logo.png"
