@@ -1,11 +1,13 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
 import { signOut } from 'next-auth/react'
+
+import { AiOutlineMenu } from 'react-icons/ai'
 
 import useLoginModal from '@/hooks/useLoginModal'
 import useRegisterModal from '@/hooks/useRegisterModal'
+import useRentModal from '@/hooks/useRentModal'
 
 import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
@@ -19,17 +21,27 @@ interface UserMenuProps {
 export default function UserMenu({ currentUser }: UserMenuProps) {
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
+  const rentModal = useRentModal()
+
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value)
   }, [])
 
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen()
+    }
+
+    rentModal.onOpen()
+  }, [currentUser, loginModal, rentModal])
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={() => {}}
+          onClick={onRent}
           className="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 md:block"
         >
           Airbnb your home
@@ -54,7 +66,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
                   <MenuItem label="My favorites" onClick={() => {}} />
                   <MenuItem label="My reservations" onClick={() => {}} />
                   <MenuItem label="My properties" onClick={() => {}} />
-                  <MenuItem label="Airbnb my home" onClick={() => {}} />
+                  <MenuItem label="Airbnb my home" onClick={rentModal.onOpen} />
                   <hr />
                   <MenuItem label="Logout" onClick={() => signOut()} />
                 </>

@@ -1,21 +1,25 @@
 'use client'
 
+import { signIn } from 'next-auth/react'
 import axios from 'axios'
+
 import { AiFillGithub } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
 import useRegisterModal from '@/hooks/useRegisterModal'
+import useLoginModal from '@/hooks/useLoginModal'
+
 import Modal from './Modal'
 import Heading from '../Heading'
 import Input from '../inputs/Input'
 import Button from '../Button'
-import { signIn } from 'next-auth/react'
 
 export default function RegisterModal() {
   const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
   const [isLoading, setIsLoading] = useState(false)
 
   const {
@@ -45,6 +49,11 @@ export default function RegisterModal() {
         setIsLoading(false)
       })
   }
+
+  const toggle = useCallback(() => {
+    loginModal.onOpen()
+    registerModal.onClose()
+  }, [loginModal, registerModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -99,7 +108,10 @@ export default function RegisterModal() {
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
           <div>Already have an account?</div>
-          <div className="cursor-pointer font-semibold text-neutral-800 hover:underline">
+          <div
+            onClick={toggle}
+            className="cursor-pointer font-semibold text-neutral-800 hover:underline"
+          >
             Log in
           </div>
         </div>
