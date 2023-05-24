@@ -44,7 +44,7 @@ export default async function RootLayout({
         <Navbar currentUser={currenUser} />
         {/* client component */}
 
-        {children}
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   )
