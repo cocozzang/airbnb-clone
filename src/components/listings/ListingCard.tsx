@@ -7,15 +7,14 @@ import { format } from 'date-fns'
 
 import useCountries from '@/hooks/useCountries'
 
-import { Reservation } from '@prisma/client'
-import { SafeListing, SafeUser } from '@/types'
+import { SafeListing, SafeReservation, SafeUser } from '@/types'
 import Image from 'next/image'
 import HeartButton from '../Button/HeartButton'
 import Button from '../Button/Button'
 
 interface ListingCardProps {
   data: SafeListing
-  reservation?: Reservation
+  reservation?: SafeReservation
   onAction?: (id: string) => void
   disabled?: boolean
   actionLabel?: string
@@ -92,7 +91,7 @@ export default function ListingCard({
           {location?.region}, {location?.label}
         </div>
 
-        <div className="font-normal text-neutral-500">
+        <div className="text-sm font-light text-neutral-500">
           {reservationDate || data.category}
         </div>
 

@@ -81,8 +81,8 @@ export default function ListingClient({
       .then(() => {
         toast.success('Listing reserved!')
         setDateRange(initialDateRange)
-        // Redirect to /trips
-        router.refresh()
+        router.push('/trips')
+        // TODO: trips으로 이동할 것인지 확인창 뛰우고 이동하기 버튼을 누르면 이동하게 하기!
       })
       .catch(() => {
         toast.error('Something went wrong')
