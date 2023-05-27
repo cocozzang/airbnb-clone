@@ -12,7 +12,6 @@ interface NavbarProps {
 }
 
 export default function Navbar({ currentUser }: NavbarProps) {
-  console.log(currentUser)
   return (
     <div className="fixed z-10 w-full select-none bg-white shadow-sm">
       <div className="border-b-[1px] py-4">

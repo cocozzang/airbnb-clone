@@ -7,14 +7,14 @@ import { format } from 'date-fns'
 
 import useCountries from '@/hooks/useCountries'
 
-import { Listing, Reservation } from '@prisma/client'
-import { SafeUser } from '@/types'
+import { Reservation } from '@prisma/client'
+import { SafeListing, SafeUser } from '@/types'
 import Image from 'next/image'
 import HeartButton from '../Button/HeartButton'
 import Button from '../Button/Button'
 
 interface ListingCardProps {
-  data: Listing
+  data: SafeListing
   reservation?: Reservation
   onAction?: (id: string) => void
   disabled?: boolean
@@ -71,7 +71,7 @@ export default function ListingCard({
   return (
     <div
       onClick={() => {
-        router.push(`/listing/${data.id}`)
+        router.push(`/listings/${data.id}`)
       }}
       className="group col-span-1 cursor-pointer"
     >
