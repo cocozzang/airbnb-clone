@@ -16,3 +16,5 @@ export type SafeReservation = Omit<
   endDate: string
   listing: SafeListing
 }
+
+export type SafeFavorite = Omit<Listing, 'createdAt'> & { createdAt: string }
