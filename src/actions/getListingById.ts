@@ -1,5 +1,4 @@
 import prisma from '@/libs/prismadb'
-import { SafeListing } from '@/types'
 
 export interface getListingsByIdParams {
   listingId?: string

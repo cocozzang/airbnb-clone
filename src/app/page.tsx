@@ -4,6 +4,11 @@ import Container from '@/components/Container'
 import EmptyState from '@/components/EmptyState/EmptyState'
 import ListingCard from '@/components/listings/ListingCard'
 
+// Error: Dynamic server usage: searchParams.userId
+export const dynamic = 'force-dynamic'
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+// https://github.com/vercel/next.js/issues/49182
+// https://github.com/AntonioErdeljac/next13-airbnb-clone/issues/12
 interface HomeProps {
   searchParams: IListingsParams
 }

@@ -1,6 +1,5 @@
 import prisma from '@/libs/prismadb'
 import { SafeListing } from '@/types'
-import queryString from 'query-string'
 
 export interface IListingsParams {
   userId?: string
